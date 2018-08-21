@@ -5,15 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bendaf.jokelib.JokeTeller;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private JokeTeller.Joke mJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mJoke = JokeTeller.tellJoke();
+        ((TextView) findViewById(R.id.instructions_text_view)).setText(mJoke.getInstruction());
     }
 
 
@@ -32,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if(id == R.id.action_settings) {
             return true;
         }
 
@@ -40,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, mJoke.getEnd(), Toast.LENGTH_LONG).show();
     }
 
 
