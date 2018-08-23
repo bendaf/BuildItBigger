@@ -31,6 +31,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        free{
+//            applicationId "com.udacity.gradle.builditbigger.free"
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+
+        }
+        paid{
+//            applicationId "com.udacity.gradle.builditbigger.paid"
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+
+        }
+    }
 }
 
 dependencies {
@@ -39,7 +55,7 @@ dependencies {
     implementation project(":jokeLib")
     implementation project(":jokedisplay")
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.1'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
