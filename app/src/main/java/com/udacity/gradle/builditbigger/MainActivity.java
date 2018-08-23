@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         (new EndpointsAsyncTask()).execute(this);
     }
 
-    private class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
+    static class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
         private MyApi myApiService = null;
-        private Context context;
+        @SuppressLint("StaticFieldLeak") private Context context;
 
         @Override
         protected String doInBackground(Context ... params) {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             Intent jokeDisplay = new Intent(context, JokeDisplayActivity.class);
             jokeDisplay.putExtra(JokeDisplayActivity.EXTRA_JOKE, result);
-            startActivity(jokeDisplay);
+            context.startActivity(jokeDisplay);
         }
     }
 }
