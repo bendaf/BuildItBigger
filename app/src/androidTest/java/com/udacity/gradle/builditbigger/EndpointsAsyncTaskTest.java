@@ -4,6 +4,8 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.InstrumentationTestCase;
 import android.test.mock.MockContext;
 
+import com.bendaf.jokelib.JokeTeller;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,7 +19,6 @@ public class EndpointsAsyncTaskTest extends InstrumentationTestCase{
     public void testVerifyJokeResponse() {
         MainActivity.EndpointsAsyncTask a = new MainActivity.EndpointsAsyncTask();
         String s = a.doInBackground(new MockContext());
-        assertNotNull(s);
-        assertNotSame(s, "");
+        assertEquals(s, JokeTeller.tellJoke().getEnd());
     }
 }
